@@ -31,7 +31,7 @@ export default class Areas extends Component {
         if (this.state.isLoading) {
             return <Loading/>
         }
-        console.log(this.state)
+
         return (
             <div>
                 <Header text={this.state.title}/>
