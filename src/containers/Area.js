@@ -1,9 +1,5 @@
 import React, {Component} from 'react';
-import Header from 'components/Header';
-import SubHeader from 'components/SubHeader';
-import IncasedList from 'components/IncasedList';
-import ProjectList from 'components/ProjectList';
-import Note from 'components/Note';
+import Area from 'components/Area';
 import Navbar from 'containers/Navbar';
 import Loading from 'components/Loading';
 
@@ -33,10 +29,11 @@ export default class Area extends Component {
         }
         return (
             <div>
-                <Header text={this.state.title}/>
-                <Note text={this.state.note}/>
-                <IncasedList title={"Single Actions"} listItems={this.state.singleActions}/>
-                <ProjectList projectIter={this.state.projectIter}/>
+                <Area
+                    title={this.state.title}
+                    note={this.state.note}
+                    singleActions={this.state.singleActions}
+                    projectIter={this.state.projectIter}/>
                 <Navbar/>
             </div>
         )
