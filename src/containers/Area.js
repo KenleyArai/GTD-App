@@ -1,19 +1,22 @@
 import React, {Component} from 'react';
 import Header from 'components/Header';
-import List from 'components/List';
-import NewTodoButton from 'containers/NewTodoButton';
+import SubHeader from 'components/SubHeader';
+import IncasedList from 'components/IncasedList';
+import ProjectList from 'components/ProjectList';
+import Note from 'components/Note';
 import Navbar from 'containers/Navbar';
-import Loading from 'components/Loading'
+import Loading from 'components/Loading';
 
-export default class Inbox extends Component {
+export default class Area extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            title: 'Inbox',
+            title: 'Area',
             isLoading: true
         }
+
     }
 
     componentDidMount() {
@@ -21,7 +24,7 @@ export default class Inbox extends Component {
 
         fetch(this.props.api_url)
             .then(response => response.json())
-            .then(data => this.setState({listItems: data.items, isLoading: false}));
+            .then(data => this.setState({title: data.title, note: data.note, singleActions: data.singleActions, projectIter: data.projectIter, isLoading: false}));
     }
 
     loadingHelper() {
@@ -31,8 +34,9 @@ export default class Inbox extends Component {
         return (
             <div>
                 <Header text={this.state.title}/>
-                <List listItems={this.state.listItems}/>
-                <NewTodoButton/>
+                <Note text={this.state.note}/>
+                <IncasedList title={"Single Actions"} listItems={this.state.singleActions}/>
+                <ProjectList projectIter={this.state.projectIter}/>
                 <Navbar/>
             </div>
         )
